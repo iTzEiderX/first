@@ -1,0 +1,12 @@
+body{
+    background-color:#2E2E2E;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+h1,h2{
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+p,li{
+    color: white;
+}

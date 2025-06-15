@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 50px;
+            background-color: #f0f2f5;
+            color: black;
+        }
+        h4{
+            color: black;
+            margin-bottom: 15px;
+        }
+        textarea{
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            resize: none;
+        }
+        p{
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #555;
+        }
+        #cantidad{
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            text-align: center;
+    }
+
+    button {
+        padding: 12px 24px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+    </style>
+</head>
+<body>
+    <h1>Bienvenido al formulario para recibir mas informacion o hacer tu segurencia</h1>
+    <h2>ingrese sus datos para completar el formulario</h2>
+    <form id="miFormulario">
+    <p><input type="text" placeholder="username">
+    <input type="text" required name="id"" placeholder="cedula"><br>
+    <input type="text" required name="telefono" placeholder="numero telefonico">
+    <input type="text" minlength="10" placeholder="email"></p>
+    
+    <input type="date"><br>
+    <br>
+    <input type="radio" name="genero" value="masculino"> Masculino
+    <input type="radio" name="genero" value="femeinino">Femeninino <br>
+    <br>
+    <input type="file"><br>
+    <br>
+    <select name="pais">
+
+        <option value="mx">México</option>
+        <option value="AF">Afganistán</option>
+    <option value="AL">Albania</option>
+    <option value="DE">Alemania</option>
+    <option value="AD">Andorra</option>
+    <option value="AO">Angola</option>
+    <option value="AR">Argentina</option>
+    <option value="AM">Armenia</option>
+    <option value="AU">Australia</option>
+    <option value="AT">Austria</option>
+    <option value="BE">Bélgica</option>
+    <option value="BO">Bolivia</option>
+    <option value="BR">Brasil</option>
+    <option value="CA">Canadá</option>
+    <option value="CL">Chile</option>
+    <option value="CN">China</option>
+    <option value="CO">Colombia</option>
+    <option value="CR">Costa Rica</option>
+    <option value="CU">Cuba</option>
+    <option value="DO">República Dominicana</option>
+    <option value="EC">Ecuador</option>
+    <option value="EG">Egipto</option>
+    <option value="ES">España</option>
+    <option value="US">Estados Unidos</option>
+    <option value="FR">Francia</option>
+    <option value="GB">Reino Unido</option>
+    <option value="GT">Guatemala</option>
+    <option value="HN">Honduras</option>
+    <option value="IN">India</option>
+    <option value="ID">Indonesia</option>
+    <option value="IT">Italia</option>
+    <option value="JP">Japón</option>
+    <option value="MX">México</option>
+    <option value="NI">Nicaragua</option>
+    <option value="NL">Países Bajos</option>
+    <option value="PA">Panamá</option>
+    <option value="PE">Perú</option>
+    <option value="PT">Portugal</option>
+    <option value="PY">Paraguay</option>
+    <option value="RU">Rusia</option>
+    <option value="SV">El Salvador</option>
+    <option value="UY">Uruguay</option>
+    <option value="VE">Venezuela</option>
+        </select><br>
+    <h3>Elige las categorias que mas te gusten</h3>
+    <label><input type="checkbox" name="intereses" value="accion"> accion</label><br>
+    <label><input type="checkbox" name="intereses" value="supervivencia"> supervivencia</label><br>
+    <label><input type="checkbox" name="intereses" value="estrategia"> estrategia</label><br>
+    <label><input type="checkbox" name="intereses" value="deportes">deportes</label><br>
+    <label><input type="checkbox" name="intereses" value="Rol"> Rol</label><br>
+    <label><input type="checkbox" name="intereses" value="Lucha"> Lucha</label><br>
+    <label><input type="checkbox" name="intereses" value="SandBox"> SandBox</label><br>
+    <label><input type="checkbox" name="intereses" value="Narrativos"> Narrativos</label><br>
+    <br>
+    
+    <br>
+    <h4>Comentarios</h4>
+    <p><textarea id="texto" rows="10" cols="30" maxlength="1000" placeholder="Escribe tu comentario aqui..."></textarea></p>
+    <p>Caracteres disponibles:
+        <span id="Cantidad">1000</span>
+    </p>
+    <script>
+        const textareaElement = document.getElementById('texto');
+        const CantidadSpan = document.getElementById('Cantidad');
+        const limiteCaracteres = 1000;
+        textareaElement.addEventListener('input', actualizarContadorCarecteres);
+        function actualizarContadorCarecteres() {
+            let cantidadActual = textareaElement.value.length;
+            let disponible = limiteCaracteres - cantidadActual;
+            CantidadSpan.textContent = disponible;
+            if (disponible <= 10 && disponible > 0) {
+                CantidadSpan.style.color = '#f39c12';
+            } else if (disponible === 0) {
+                CantidadSpan.style.color = '#e74c3c';
+                swal('Limite de caracteres alcanzado.', 'No puedes escribir mas de' + limiteCaracteres + 'caracteres.', 'warning');
+            } else {
+                CantidadSpan.style.color = '#27ae60';
+            }
+        }
+    </script>
+    <form id="miFormulario">
+    <label>Nombre:</label>
+    <input type="text" id="nombre" name="nombre"><br><br>
+
+    <label>Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+
+    <input type="button" id="enviar" value="Enviar" onclick="validarFormulario()">
+</form>
+    <script>
+    function validarFormulario() {
+        const formulario = document.getElementById('miFormulario');
+        const nombre = document.getElementById('nombre').value.trim();
+        const email = document.getElementById('email').value.trim();
+
+        if (nombre === '' || email === '') {
+            swal('Por favor complete el formulario').then(() => {
+                formulario.reset();
+            });
+        } else {
+            swal('Formulario enviado con éxito').then(() => {
+                formulario.reset();
+            });
+        }
+    }
+</script>
+</body>
+</html>
